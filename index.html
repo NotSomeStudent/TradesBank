@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>MockBank</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+
+  <meta name="theme-color" content="#08111f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="MockBank" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- LOGIN -->
+    <section id="loginScreen" class="screen login-screen">
+      <div class="login-shell">
+        <div class="brand-row">
+          <div class="app-icon">MB</div>
+          <div>
+            <p class="eyebrow">Demo banking app</p>
+            <h1>MockBank</h1>
+          </div>
+        </div>
+
+        <div class="login-card">
+          <div class="card-header">
+            <h2>Welcome back</h2>
+            <p>Enter anything to continue.</p>
+          </div>
+
+          <form id="loginForm" class="form">
+            <label>
+              Username
+              <input
+                id="usernameInput"
+                type="text"
+                placeholder="Ethan"
+                autocomplete="off"
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                id="passwordInput"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="off"
+              />
+            </label>
+
+            <button class="primary-btn" type="submit">
+              Login
+            </button>
+          </form>
+
+          <p class="demo-note">
+
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboardScreen" class="screen dashboard-screen hidden">
+      <header class="topbar">
+        <div>
+          <p class="muted">Good day</p>
+          <h1 id="userName">User</h1>
+        </div>
+
+        <button id="logoutBtn" class="ghost-btn" type="button">
+          Logout
+        </button>
+      </header>
+
+      <section class="balance-card">
+        <div class="balance-top">
+          <p>Total balance</p>
+          <span>Demo</span>
+        </div>
+
+        <h2 id="totalBalance">$0.00</h2>
+
+        <div class="balance-bottom">
+          <span>Checking + Savings</span>
+          <span id="accountNumber">•••• 2048</span>
+        </div>
+      </section>
+
+      <section class="quick-actions">
+        <button class="action-btn" data-action="send" type="button">
+          <span>↑</span>
+          Send
+        </button>
+
+        <button class="action-btn" data-action="deposit" type="button">
+          <span>＋</span>
+          Deposit
+        </button>
+
+        <button class="action-btn" data-action="withdraw" type="button">
+          <span>↓</span>
+          Withdraw
+        </button>
+      </section>
+
+      <section class="accounts-grid">
+        <article class="mini-card">
+          <p>Checking</p>
+          <h3 id="checkingBalance">$0.00</h3>
+          <span>Everyday spending</span>
+        </article>
+
+        <article class="mini-card">
+          <p>Savings</p>
+          <h3 id="savingsBalance">$0.00</h3>
+          <span>Emergency fund</span>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Recent activity</h2>
+          <button id="resetBtn" class="text-btn" type="button">
+            Reset
+          </button>
+        </div>
+
+        <div id="transactionsList" class="transactions"></div>
+      </section>
+
+      <nav class="bottom-nav">
+        <button class="nav-item active" type="button">Home</button>
+        <button class="nav-item" type="button">Cards</button>
+        <button class="nav-item" type="button">Pay</button>
+        <button class="nav-item" type="button">Settings</button>
+      </nav>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
