@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Equity">
+  <rect width="512" height="512" fill="#0B7A4F"/>
+  <g transform="translate(178 182)">
+    <rect x="0"   y="108" width="30" height="46"  rx="7" fill="#fff" opacity="0.55"/>
+    <rect x="44"  y="76"  width="30" height="78"  rx="7" fill="#fff" opacity="0.72"/>
+    <rect x="88"  y="38"  width="30" height="116" rx="7" fill="#fff" opacity="0.88"/>
+    <rect x="132" y="0"   width="30" height="154" rx="7" fill="#fff"/>
+  </g>
+</svg>

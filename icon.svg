@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Equity">
+  <rect width="512" height="512" rx="114" fill="#0B7A4F"/>
+  <rect width="512" height="512" rx="114" fill="url(#g)"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".10"/>
+      <stop offset="1" stop-color="#000000" stop-opacity=".14"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(150 150)">
+    <rect x="0"   y="150" width="40" height="62"  rx="9" fill="#fff" opacity="0.55"/>
+    <rect x="58"  y="104" width="40" height="108" rx="9" fill="#fff" opacity="0.72"/>
+    <rect x="116" y="54"  width="40" height="158" rx="9" fill="#fff" opacity="0.88"/>
+    <rect x="174" y="0"   width="40" height="212" rx="9" fill="#fff"/>
+  </g>
+</svg>

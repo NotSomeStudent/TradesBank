@@ -1,0 +1,15 @@
+{
+  "name": "Equity — Banking & Investing",
+  "short_name": "Equity",
+  "description": "A fictional premium banking and investing demo. No real money, accounts, or data.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F4F6F8",
+  "theme_color": "#0B7A4F",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./maskable-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

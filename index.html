@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <title>Equity — Banking &amp; Investing</title>
+
+  <!-- Prevent theme flash: resolve saved/system theme before first paint -->
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem('eq.prefs.v2');
+        var pref = raw ? (JSON.parse(raw).theme || 'system') : 'system';
+        var dark = pref === 'dark' ||
+          (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="theme-color" id="metaTheme" content="#0B7A4F" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+
+  <!-- iOS standalone -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Equity" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- ===================== AUTH ===================== -->
+  <section id="auth" class="auth" aria-label="Sign in">
+    <div class="auth-card">
+      <div class="brand brand--lg">
+        <span class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="wordmark">Equity</span>
+      </div>
+      <h1 class="auth-h1">Banking that moves with you.</h1>
+      <p class="auth-sub">Sign in to your accounts, cards, and investments.</p>
+
+      <form id="loginForm" class="auth-form" autocomplete="off" novalidate>
+        <div class="input">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" inputmode="text"
+                 placeholder="Enter your username" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="input">
+          <label for="password">Password</label>
+          <div class="input-affix">
+            <input id="password" name="password" type="password"
+                   placeholder="Enter your password" autocomplete="off" />
+            <button type="button" id="pwToggle" class="affix-btn" aria-label="Show password" aria-pressed="false">
+              <svg class="i-eye" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <p class="hint">Demo only — any details work, and nothing is stored.</p>
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg btn--block" id="loginBtn">
+          <span class="btn-label">Sign in</span>
+          <span class="spinner" hidden aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn--quiet btn--block" id="bioBtn">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11a3 3 0 0 0-3 3v3M12 11a3 3 0 0 1 3 3v3M7 8a7 7 0 0 1 10 0M4.5 6a10 10 0 0 1 15 0"/></svg>
+          Use Face ID
+        </button>
+      </form>
+
+      <p class="auth-legal">
+        Equity is a <strong>fictional demo</strong>. Not a real bank. No money is held, no
+        transactions occur, and it is not insured or regulated.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== APP ===================== -->
+  <div id="app" class="app" hidden>
+    <header class="appbar" role="banner">
+      <div class="appbar-lead">
+        <button class="avatar-btn" id="avatarBtn" aria-label="Profile and settings">
+          <span class="avatar" id="avatarInitials">ZN</span>
+        </button>
+        <div class="appbar-greet">
+          <span class="greet-hi" id="greetLine">Welcome back</span>
+          <span class="greet-name" id="greetName">Zachary Nichols</span>
+        </div>
+      </div>
+      <div class="appbar-actions">
+        <button class="icon-btn" id="privacyBtn" aria-label="Hide balances" aria-pressed="false" title="Hide balances">
+          <svg class="i-eye-on" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="i-eye-off" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" hidden><path d="m2 2 20 20M6.7 6.7C3.9 8.4 2 12 2 12s3.5 7 10 7c2 0 3.7-.5 5.2-1.3M9.9 5.2A9.8 9.8 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-2.2 3.1M9.5 9.5a3 3 0 0 0 4.2 4.2"/></svg>
+        </button>
+        <button class="icon-btn" id="bellBtn" aria-label="Notifications" title="Notifications">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <span class="badge-dot" id="bellDot" hidden></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="view" class="view" tabindex="-1" role="main"></main>
+
+    <nav class="tabbar" role="navigation" aria-label="Primary">
+      <button class="tab" data-route="home" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-7h6v7"/></svg>
+        <span>Home</span>
+      </button>
+      <button class="tab" data-route="accounts" aria-label="Accounts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/></svg>
+        <span>Accounts</span>
+      </button>
+      <button class="tab" data-route="cards" aria-label="Cards">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+        <span>Cards</span>
+      </button>
+      <button class="tab" data-route="invest" aria-label="Invest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 6-7"/></svg>
+        <span>Invest</span>
+      </button>
+      <button class="tab" data-route="more" aria-label="More">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+        <span>More</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ===================== MODAL / SHEET ===================== -->
+  <div id="sheetHost" class="sheet-host" hidden>
+    <div class="sheet-scrim" data-close></div>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <header class="sheet-head">
+        <h2 id="sheetTitle" class="sheet-title">—</h2>
+        <button class="icon-btn icon-btn--sm" data-close aria-label="Close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </header>
+      <div id="sheetBody" class="sheet-body"></div>
+    </div>
+  </div>
+
+  <div id="toastHost" class="toast-host" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
